@@ -125,7 +125,6 @@ class SinglePostView(View):
             comment.post = post
             comment.save()
             return HttpResponseRedirect(reverse("post-detail-page", args=[slug]))
-
         context = {
             "post": post,
             "post_tags": post.tags.all(),
