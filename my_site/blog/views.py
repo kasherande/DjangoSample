@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CommentForm
-from .models import Author, Post, Tag
+from .models import Author, Comment, Post, Tag
 from django.views.generic import ListView, DetailView
 from django.views import View
 # Create your views here.
@@ -113,7 +113,8 @@ class SinglePostView(View):
         context = {
             "post": post,
             "post_tags": post.tags.all(),
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "comments": Comment.objects.filter(post=post)
         }
         return render(request, "blog/post-detail.html", context)
 
